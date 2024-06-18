@@ -1,0 +1,12 @@
+label {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  padding: 6px;
+}
+button {
+  width: 100%;
+  padding: 6px;
+  cursor: pointer;
+}
