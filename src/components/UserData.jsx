@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const UserData = () => {
-  const [userData, setUserData] = useState(null);
-
+const UserData = ({ fetchFormData, userData, setUserData }) => {
   useEffect(() => {
-    axios
-      .get("https://node-mongodb-image.onrender.com/form")
-      .then((res) => {
-        setUserData(res.data);
-      })
-      .catch((err) => console.log("Something Went Wrong"));
+    fetchFormData();
   }, []);
 
   const deleteHandler = async (id) => {
     await axios
       .delete(`https://node-mongodb-image.onrender.com/form/${id}`)
-      .then((res) => {
+      .then(async (res) => {
+        await fetchFormData();
         alert("Image Deleted Successfully");
       })
       .catch((err) => alert("Something Went Wrong"));

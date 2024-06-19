@@ -3,7 +3,7 @@ import "./Form.css";
 
 import axios from "axios";
 
-const Form = () => {
+const Form = ({ fetchFormData }) => {
   const initialValues = {
     fullName: "",
     profilePhoto: undefined,
@@ -33,8 +33,9 @@ const Form = () => {
 
     axios
       .post("https://node-mongodb-image.onrender.com/form", data)
-      .then((res) => {
+      .then(async (res) => {
         setFormData(initialValues);
+        await fetchFormData();
         setSending(false);
         alert("Your form has been submitted successfully");
       })
